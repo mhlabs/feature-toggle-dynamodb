@@ -4,24 +4,28 @@ const DynamoDBFeatureStore = require('launchdarkly-node-server-sdk-dynamodb');
 let initialized = false;
 let client;
 
+async function intializeLd(sdkKey) {
+  const tableName = process.env.FeatureFlagsTable || 'FeatureFlagsTable';
+  const store = DynamoDBFeatureStore(tableName);
+  const config = {
+    featureStore: store,
+    useLdd: true,
+    offline: true
+  };
+
+  console.log('Initializing LD...');
+
+  client = LaunchDarkly.init(sdkKey, config);
+  await client.waitForInitialization();
+
+  console.log('Initializing LD done.');
+
+  initialized = true;
+}
+
 const featureToggleClient = async sdkKey => {
   if (!initialized) {
-    const tableName = process.env.FeatureFlagsTable || 'FeatureFlagsTable';
-    const store = DynamoDBFeatureStore(tableName);
-    const config = {
-      featureStore: store,
-      useLdd: true,
-      offline: true
-    };
-
-    console.log('Initializing LD...');
-
-    client = LaunchDarkly.init(sdkKey, config);
-    await client.waitForInitialization();
-
-    console.log('Initializing LD done.');
-
-    initialized = true;
+    await intializeLd(sdkKey);
   }
 
   async function get(flagName, userKey) {
@@ -29,9 +33,9 @@ const featureToggleClient = async sdkKey => {
     return response;
   }
 
-  return {
+  return Promise.resolve({
     get
-  };
+  });
 };
 
 module.exports = {
