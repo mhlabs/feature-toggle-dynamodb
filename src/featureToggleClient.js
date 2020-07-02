@@ -9,8 +9,7 @@ async function intializeLd(sdkKey) {
   const store = DynamoDBFeatureStore(tableName);
   const config = {
     featureStore: store,
-    useLdd: true,
-    offline: true
+    useLdd: true
   };
 
   console.log('Initializing LD...');
