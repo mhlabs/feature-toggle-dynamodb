@@ -4,7 +4,7 @@ const DynamoDBFeatureStore = require('launchdarkly-node-server-sdk-dynamodb');
 let initialized = false;
 let client;
 
-const featureToggleClient = sdkKey => {
+const featureToggleClient = async sdkKey => {
   if (!initialized) {
     const tableName = process.env.FeatureFlagsTable || 'FeatureFlagsTable';
     const store = DynamoDBFeatureStore(tableName);
@@ -13,7 +13,13 @@ const featureToggleClient = sdkKey => {
       useLdd: true,
       offline: true
     };
+
+    console.log('Initializing LD...');
+
     client = LaunchDarkly.init(sdkKey, config);
+    await client.waitForInitialization();
+
+    console.log('Initializing LD done.');
 
     initialized = true;
   }
