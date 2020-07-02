@@ -10,12 +10,13 @@ async function intializeLd(sdkKey) {
   const config = {
     featureStore: store,
     useLdd: true,
-    sendEvents: false
+    sendEvents: false,
+    offline: true
   };
 
   console.log('Initializing LD...');
 
-  client = LaunchDarkly.init(sdkKey, config);
+  client = LaunchDarkly.init('', config);
   await client.waitForInitialization();
 
   console.log('Initializing LD done.');
