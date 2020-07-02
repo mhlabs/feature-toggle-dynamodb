@@ -1,1 +1,1 @@
-# lambda-local
+# feature-toggle-dynamodb
