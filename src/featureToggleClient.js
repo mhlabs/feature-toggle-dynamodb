@@ -23,7 +23,7 @@ async function intializeLd(sdkKey) {
   initialized = true;
 }
 
-const featureToggleClient = async sdkKey => {
+const featureToggleClient = async (sdkKey = 'dummyKey') => {
   if (!initialized) {
     await intializeLd(sdkKey);
   }
