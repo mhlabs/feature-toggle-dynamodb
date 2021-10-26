@@ -1,6 +1,6 @@
 {
   "name": "@mhlabs/feature-toggle-dynamodb",
-  "version": "1.7.0",
+  "version": "1.8.0",
   "description": "A package for using feature flags with Launch Darkly and storage in dynamodb",
   "main": "index.js",
   "jest": {
@@ -24,7 +24,6 @@
   },
   "homepage": "https://github.com/mhlabs/feature-toggle-dynamodb#readme",
   "devDependencies": {
-    "aws-sdk": "^2.1013.0",
     "eslint": "^7.2.0",
     "eslint-config-airbnb-base": "14.2.1",
     "eslint-config-prettier": "^8.3.0",
@@ -35,6 +34,7 @@
     "prettier": "^2.3.2"
   },
   "dependencies": {
+    "aws-sdk": "^2.1013.0",
     "launchdarkly-node-server-sdk": "^6.2.0",
     "launchdarkly-node-server-sdk-dynamodb": "^4.0.0"
   }
