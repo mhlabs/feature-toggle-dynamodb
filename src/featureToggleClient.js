@@ -1,5 +1,5 @@
 const LaunchDarkly = require('launchdarkly-node-server-sdk');
-const DynamoDBFeatureStore = require('launchdarkly-node-server-sdk-dynamodb');
+const { DynamoDBFeatureStore } = require('launchdarkly-node-server-sdk-dynamodb');
 
 let initialized = false;
 let client;

@@ -1,6 +1,6 @@
 {
   "name": "@mhlabs/feature-toggle-dynamodb",
-  "version": "1.8.0",
+  "version": "1.8.1",
   "description": "A package for using feature flags with Launch Darkly and storage in dynamodb",
   "main": "index.js",
   "jest": {
